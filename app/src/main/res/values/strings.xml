@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">WfrleyTask</string>
+    <string name="local_store_name" translatable="false">متجر عيد السلام</string>
+    <string name="add_new_order">اضافة طلب جديد</string>
+    <string name="price_with_unit">%1$s ج.م</string>
+    <string name="order_empty_state_title">لا يوجد طلبات سابقة</string>
+    <string name="all_orders">كل الطلبات</string>
+    <string name="fall_back">غير معروف</string>
 </resources>
