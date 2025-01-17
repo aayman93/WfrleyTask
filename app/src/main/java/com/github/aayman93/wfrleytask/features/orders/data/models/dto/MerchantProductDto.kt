@@ -4,9 +4,9 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class MerchantProductDto(
-    val additionalBarcode: Any?,
+    val additionalBarcode: String?,
     val alwaysAvailable: Boolean?,
-    val childQuantity: Any?,
+    val childQuantity: Double?,
     val dateFrom: String?,
     val dateTo: String?,
     val description: String?,

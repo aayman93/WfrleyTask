@@ -1,6 +1,8 @@
 package com.github.aayman93.wfrleytask.features.orders.data.data_source
 
+import com.github.aayman93.wfrleytask.features.orders.data.models.dto.ProductDto
 import com.github.aayman93.wfrleytask.features.orders.data.models.requests.OrdersPagingRequest
+import com.github.aayman93.wfrleytask.features.orders.data.models.requests.SearchProductsRequest
 import com.github.aayman93.wfrleytask.features.orders.data.models.responses.OrderDetailsResponse
 import com.github.aayman93.wfrleytask.features.orders.data.models.responses.OrdersResponse
 import com.github.aayman93.wfrleytask.utils.Constants.SUB_ROUTE
@@ -21,4 +23,9 @@ interface OrdersService {
         @Path("orderId") orderId: Int,
         @Path("merchantId") merchantId: String
     ): OrderDetailsResponse
+
+    @POST("$SUB_ROUTE/SearchProductsForCustomer")
+    suspend fun searchProducts(
+        @Body searchProductsRequest: SearchProductsRequest
+    ): List<ProductDto>
 }

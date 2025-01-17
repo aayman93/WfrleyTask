@@ -55,7 +55,7 @@ fun OrderInfo(
         )
         Spacer(Modifier.height(16.dp))
         OrderInfoItem(
-            title = stringResource(R.string.cutomer_name),
+            title = stringResource(R.string.customer_name),
             value = customerName
         )
         Spacer(Modifier.height(8.dp))

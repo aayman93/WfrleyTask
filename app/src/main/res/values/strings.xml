@@ -2,16 +2,18 @@
     <string name="app_name">WfrleyTask</string>
     <string name="local_store_name" translatable="false">متجر عيد السلام</string>
     <string name="add_new_order">اضافة طلب جديد</string>
-    <string name="price_with_unit">%1$s ج.م</string>
+    <string name="price_with_short_unit">%1$s ج.م</string>
+    <string name="price_with_unit">%1$s جنية</string>
     <string name="price_with_full_unit">%1$s جنية مصري</string>
     <string name="product_quantity_price">%1$s قطع * %2$s جنية</string>
+    <string name="product_quantity">%s قطعة</string>
     <string name="order_empty_state_title">لا يوجد طلبات سابقة</string>
     <string name="all_orders">كل الطلبات</string>
     <string name="fall_back">غير معروف</string>
     <string name="back">العودة</string>
     <string name="home">الرئيسية</string>
     <string name="order_info">بيانات الطلب</string>
-    <string name="cutomer_name">اسم العميل</string>
+    <string name="customer_name">اسم العميل</string>
     <string name="phone">رقم الهاتف</string>
     <string name="address">العنوان</string>
     <string name="invoice_number_with_value">رقم الفاتورة #%1$s</string>
@@ -21,4 +23,9 @@
     <string name="total_price">المبلغ الإجمالي</string>
     <string name="order_items">عناصر الطلب</string>
     <string name="cash">نقدي</string>
+    <string name="add_to_order">أضف إلى الطلب</string>
+    <string name="remove_from_order">احذف من الطلب</string>
+    <string name="create_new_order">انشاء طلب جديد</string>
+    <string name="finish_order">إتمام الطلب</string>
+    <string name="search_for_product">بحث بالإسم او الباركود</string>
 </resources>

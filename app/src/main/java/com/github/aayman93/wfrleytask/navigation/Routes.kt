@@ -11,9 +11,10 @@ data class OrderDetailsRoute(
 )
 
 @Serializable
+object NewOrderGraphRoute
+
+@Serializable
 object CreateOrderRoute
 
 @Serializable
-data class FinishOrderRoute(
-    val orderDetails: String
-)
+object FinishOrderRoute

@@ -2,8 +2,10 @@ package com.github.aayman93.wfrleytask.features.orders.data.repository
 
 import com.github.aayman93.wfrleytask.features.orders.data.data_source.OrdersService
 import com.github.aayman93.wfrleytask.features.orders.data.models.requests.OrdersPagingRequest
+import com.github.aayman93.wfrleytask.features.orders.data.models.requests.SearchProductsRequest
 import com.github.aayman93.wfrleytask.features.orders.domain.models.Order
 import com.github.aayman93.wfrleytask.features.orders.domain.models.OrderDetails
+import com.github.aayman93.wfrleytask.features.orders.domain.models.Product
 import com.github.aayman93.wfrleytask.features.orders.domain.repository.OrdersRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -37,6 +39,17 @@ class OrdersRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun searchProductsForCustomer(
+        name: String,
+        storeId: Int,
+        merchantId: String
+    ): List<Product> {
+        return withContext(dispatcher) {
+            val request = createSearchProductsRequest(name, storeId, merchantId)
+            service.searchProducts(request).map { it.toProduct() }
+        }
+    }
+
     private fun createOrdersPagingRequest(
         pageNo: Int,
         pageSize: Int,
@@ -48,6 +61,18 @@ class OrdersRepositoryImpl @Inject constructor(
             pageSize = pageSize,
             pageNo = pageNo,
             status = status,
+            storeId = storeId,
+            merchantId = merchantId
+        )
+    }
+
+    private fun createSearchProductsRequest(
+        name: String,
+        storeId: Int,
+        merchantId: String
+    ) : SearchProductsRequest {
+        return SearchProductsRequest(
+            name = name,
             storeId = storeId,
             merchantId = merchantId
         )

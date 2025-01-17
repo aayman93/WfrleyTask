@@ -49,9 +49,21 @@ val Text10Regular = TextStyle(
     fontSize = 10.sp
 )
 
+val Text12Regular = TextStyle(
+    fontFamily = AppFontFamily,
+    fontWeight = FontWeight.Normal,
+    fontSize = 12.sp
+)
+
 val Text12Medium = TextStyle(
     fontFamily = AppFontFamily,
     fontWeight = FontWeight.Medium,
+    fontSize = 12.sp
+)
+
+val Text12SemiBold = TextStyle(
+    fontFamily = AppFontFamily,
+    fontWeight = FontWeight.SemiBold,
     fontSize = 12.sp
 )
 
@@ -65,6 +77,12 @@ val Text14SemiBold = TextStyle(
     fontFamily = AppFontFamily,
     fontWeight = FontWeight.SemiBold,
     fontSize = 14.sp
+)
+
+val Text16Regular = TextStyle(
+    fontFamily = AppFontFamily,
+    fontWeight = FontWeight.Normal,
+    fontSize = 16.sp
 )
 
 val Text16Medium = TextStyle(
@@ -83,6 +101,12 @@ val Text16Bold = TextStyle(
     fontFamily = AppFontFamily,
     fontWeight = FontWeight.Bold,
     fontSize = 16.sp
+)
+
+val Text20Medium = TextStyle(
+    fontFamily = AppFontFamily,
+    fontWeight = FontWeight.Medium,
+    fontSize = 20.sp
 )
 
 val Text20Bold = TextStyle(

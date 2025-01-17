@@ -70,7 +70,7 @@ fun OrderSummary(
 
         OrderSummaryItem(
             title = stringResource(R.string.total_price),
-            value = stringResource(R.string.price_with_unit, formatedTotalPrice),
+            value = stringResource(R.string.price_with_short_unit, formatedTotalPrice),
             textStyle = Text14SemiBold,
             textColor = Primary700
         )

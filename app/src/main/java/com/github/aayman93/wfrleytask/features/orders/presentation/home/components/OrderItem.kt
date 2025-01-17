@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -32,8 +33,8 @@ import com.github.aayman93.wfrleytask.ui.theme.Primary700
 import com.github.aayman93.wfrleytask.ui.theme.Text10Regular
 import com.github.aayman93.wfrleytask.ui.theme.Text12Medium
 import com.github.aayman93.wfrleytask.ui.theme.Text16Medium
-import com.github.aayman93.wfrleytask.utils.toDateTime
 import com.github.aayman93.wfrleytask.utils.formatDouble
+import com.github.aayman93.wfrleytask.utils.toDateTime
 
 @Composable
 fun OrderItem(
@@ -76,20 +77,33 @@ fun OrderItem(
         Column(
             modifier = Modifier
                 .height(48.dp)
-                .weight(1f)
-                .padding(top = 6.dp, bottom = 2.dp),
-            verticalArrangement = Arrangement.SpaceBetween
+                .weight(1f),
+            verticalArrangement = Arrangement.SpaceAround
         ) {
-            Text(
-                text = formatedOrderDate.ifEmpty {
-                    stringResource(R.string.fall_back)
-                },
-                style = Text16Medium,
-                color = Color.Black,
-                textAlign = TextAlign.Start,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = formatedOrderDate.ifEmpty {
+                        stringResource(R.string.fall_back)
+                    },
+                    style = Text16Medium,
+                    color = Color.Black,
+                    textAlign = TextAlign.Start,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f)
+                )
+
+                Text(
+                    text = stringResource(R.string.price_with_short_unit, formatedPrice),
+                    style = Text12Medium,
+                    color = Primary700,
+                    textAlign = TextAlign.End
+                )
+            }
             Text(
                 text = customerName.ifEmpty {
                     stringResource(R.string.fall_back)
@@ -101,14 +115,6 @@ fun OrderItem(
                 overflow = TextOverflow.Ellipsis
             )
         }
-
-        Text(
-            text = stringResource(R.string.price_with_unit, formatedPrice),
-            style = Text12Medium,
-            color = Primary700,
-            textAlign = TextAlign.End,
-            modifier = Modifier.padding(top = 2.dp)
-        )
     }
 }
 
