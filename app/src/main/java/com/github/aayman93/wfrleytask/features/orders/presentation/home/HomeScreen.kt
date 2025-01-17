@@ -29,11 +29,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -48,6 +46,7 @@ import com.github.aayman93.wfrleytask.features.orders.presentation.home.componen
 import com.github.aayman93.wfrleytask.ui.theme.Neutral200
 import com.github.aayman93.wfrleytask.ui.theme.Neutral700
 import com.github.aayman93.wfrleytask.ui.theme.Primary700
+import com.github.aayman93.wfrleytask.ui.theme.Text16Bold
 import com.github.aayman93.wfrleytask.utils.showToast
 import kotlinx.coroutines.flow.flow
 
@@ -107,7 +106,10 @@ private fun HomeScreenContent(
     ) { innerPadding ->
         if (orders.loadState.refresh is LoadState.Loading) {
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize()
+                    .background(Color.White),
                 contentAlignment = Alignment.Center
             ) {
                 CircularProgressIndicator(color = Primary700)
@@ -134,8 +136,7 @@ private fun HomeScreenContent(
 
                 Text(
                     text = stringResource(R.string.all_orders),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
+                    style = Text16Bold,
                     color = Neutral700,
                     textAlign = TextAlign.Start
                 )

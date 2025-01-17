@@ -1,29 +1,35 @@
 package com.github.aayman93.wfrleytask.utils
 
+import com.github.aayman93.wfrleytask.utils.Constants.DATE_FORMAT
 import com.github.aayman93.wfrleytask.utils.Constants.DATE_TIME_FORMAT
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import com.github.aayman93.wfrleytask.utils.Constants.TIME_FORMAT
 import java.util.Locale
 
-fun String.formatDate(
+fun String.toDateTime(
     toPattern: String = DATE_TIME_FORMAT,
     locale: String = "ar"
 ): String {
-
-    return try {
-        val date = LocalDateTime.parse(this, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-
-        val formatter = DateTimeFormatter.ofPattern(toPattern, Locale(locale))
-
-        date.format(formatter)
-    } catch (e: Exception) {
-        e.printStackTrace()
-        return ""
-    }
+    return formatDateTime(dateTime = this, toPattern = toPattern, locale = locale)
 }
 
-fun Double.formatPrice(): String {
-    return if (this % 1.0 == 0.0) {
+fun String.toDate(
+    toPattern: String = DATE_FORMAT,
+    locale: String = "ar"
+): String {
+    return formatDateTime(dateTime = this, toPattern = toPattern, locale = locale)
+}
+
+fun String.toTime(
+    toPattern: String = TIME_FORMAT,
+    locale: String = "en"
+): String {
+    return formatDateTime(dateTime = this, toPattern = toPattern, locale = locale)
+}
+
+fun Double.formatDouble(
+    alwaysHasDecimal: Boolean = false
+): String {
+    return if (!alwaysHasDecimal && this % 1.0 == 0.0) {
         this.toInt().toString()
     } else {
         String.format(Locale.ENGLISH,"%.2f", this)

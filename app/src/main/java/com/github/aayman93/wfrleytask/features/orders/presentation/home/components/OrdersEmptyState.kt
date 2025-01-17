@@ -15,13 +15,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.github.aayman93.wfrleytask.R
 import com.github.aayman93.wfrleytask.ui.theme.Neutral700
+import com.github.aayman93.wfrleytask.ui.theme.Text16Bold
 
 @Composable
 fun OrdersEmptyState(
@@ -43,8 +42,7 @@ fun OrdersEmptyState(
 
         Text(
             text = stringResource(R.string.order_empty_state_title),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
+            style = Text16Bold,
             color = Neutral700,
             textAlign = TextAlign.Center
         )

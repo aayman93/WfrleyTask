@@ -14,18 +14,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.github.aayman93.wfrleytask.R
 import com.github.aayman93.wfrleytask.ui.theme.Primary50
 import com.github.aayman93.wfrleytask.ui.theme.Primary700
+import com.github.aayman93.wfrleytask.ui.theme.Text14SemiBold
 
 @Composable
 fun CreateOrder(
@@ -47,13 +45,12 @@ fun CreateOrder(
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_cart),
             contentDescription = null,
-            tint = Color.Unspecified
+            tint = Primary700
         )
 
         Text(
             text = stringResource(R.string.add_new_order),
-            fontSize = 14.sp,
-            fontWeight = FontWeight.SemiBold,
+            style = Text14SemiBold,
             color = Primary700,
             textAlign = TextAlign.Center
         )

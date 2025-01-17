@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.github.aayman93.wfrleytask.features.orders.presentation.home.HomeScreen
+import com.github.aayman93.wfrleytask.features.orders.presentation.order_details.OrderDetailsScreen
 
 @Composable
 fun WfrleyApp(
@@ -22,7 +23,14 @@ fun WfrleyApp(
             )
         }
         composable<OrderDetailsRoute> {
-
+            OrderDetailsScreen(
+                onBackClick = {
+                    navController.navigateUp()
+                },
+                onHomeClick = {
+                    navController.navigateUp()
+                }
+            )
         }
         composable<CreateOrderRoute> {
 

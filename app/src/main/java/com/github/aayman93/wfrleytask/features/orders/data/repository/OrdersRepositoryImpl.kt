@@ -1,9 +1,9 @@
 package com.github.aayman93.wfrleytask.features.orders.data.repository
 
-import android.util.Log
 import com.github.aayman93.wfrleytask.features.orders.data.data_source.OrdersService
 import com.github.aayman93.wfrleytask.features.orders.data.models.requests.OrdersPagingRequest
 import com.github.aayman93.wfrleytask.features.orders.domain.models.Order
+import com.github.aayman93.wfrleytask.features.orders.domain.models.OrderDetails
 import com.github.aayman93.wfrleytask.features.orders.domain.repository.OrdersRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -24,8 +24,16 @@ class OrdersRepositoryImpl @Inject constructor(
     ): List<Order> {
         return withContext(dispatcher) {
             val request = createOrdersPagingRequest(pageNo, pageSize, status, storeId, merchantId)
-            Log.d("OrdersRepositoryImpl", "request: $request")
             service.getOrders(request).items?.map { it.toOrder() } ?: emptyList()
+        }
+    }
+
+    override suspend fun getOrderDetails(
+        orderId: Int,
+        merchantId: String
+    ): OrderDetails {
+        return withContext(dispatcher) {
+            service.getOrderDetails(orderId, merchantId).toOrderDetails()
         }
     }
 

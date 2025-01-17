@@ -6,8 +6,25 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
+fun formatDateTime(
+    dateTime: String,
+    toPattern: String,
+    locale: String = "ar"
+): String {
+    return try {
+        val date = LocalDateTime.parse(dateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+
+        val formatter = DateTimeFormatter.ofPattern(toPattern, Locale(locale))
+
+        date.format(formatter)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        ""
+    }
+}
+
 fun getTodayDateFormatted(
-    dateFormat: String = Constants.DATE_FORMAT,
+    dateFormat: String = Constants.TODAY_DATE_FORMAT,
     locale: String = "ar"
 ): String {
     val todayDate = LocalDateTime.now()

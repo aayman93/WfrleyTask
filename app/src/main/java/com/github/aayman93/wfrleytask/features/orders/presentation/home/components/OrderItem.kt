@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -20,18 +21,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.github.aayman93.wfrleytask.R
 import com.github.aayman93.wfrleytask.ui.theme.Neutral500
 import com.github.aayman93.wfrleytask.ui.theme.Primary100
 import com.github.aayman93.wfrleytask.ui.theme.Primary700
-import com.github.aayman93.wfrleytask.utils.formatDate
-import com.github.aayman93.wfrleytask.utils.formatPrice
+import com.github.aayman93.wfrleytask.ui.theme.Text10Regular
+import com.github.aayman93.wfrleytask.ui.theme.Text12Medium
+import com.github.aayman93.wfrleytask.ui.theme.Text16Medium
+import com.github.aayman93.wfrleytask.utils.toDateTime
+import com.github.aayman93.wfrleytask.utils.formatDouble
 
 @Composable
 fun OrderItem(
@@ -42,11 +44,11 @@ fun OrderItem(
     modifier: Modifier = Modifier
 ) {
     val formatedOrderDate = remember(orderDate) {
-        orderDate.formatDate()
+        orderDate.toDateTime()
     }
     
     val formatedPrice = remember(price) {
-        price.formatPrice()
+        price.formatDouble()
     }
 
     Row(
@@ -66,20 +68,23 @@ fun OrderItem(
             Icon(
                 imageVector = ImageVector.vectorResource(R.drawable.ic_cart),
                 contentDescription = null,
-                tint = Color.Unspecified,
+                tint = Primary700,
                 modifier = Modifier.size(24.dp)
             )
         }
 
         Column(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .height(48.dp)
+                .weight(1f)
+                .padding(top = 6.dp, bottom = 2.dp),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = formatedOrderDate.ifEmpty {
                     stringResource(R.string.fall_back)
                 },
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
+                style = Text16Medium,
                 color = Color.Black,
                 textAlign = TextAlign.Start,
                 maxLines = 1,
@@ -89,8 +94,7 @@ fun OrderItem(
                 text = customerName.ifEmpty {
                     stringResource(R.string.fall_back)
                 },
-                fontSize = 10.sp,
-                fontWeight = FontWeight.Normal,
+                style = Text10Regular,
                 color = Neutral500,
                 textAlign = TextAlign.Start,
                 maxLines = 1,
@@ -100,8 +104,7 @@ fun OrderItem(
 
         Text(
             text = stringResource(R.string.price_with_unit, formatedPrice),
-            fontSize = 12.sp,
-            fontWeight = FontWeight.Medium,
+            style = Text12Medium,
             color = Primary700,
             textAlign = TextAlign.End,
             modifier = Modifier.padding(top = 2.dp)

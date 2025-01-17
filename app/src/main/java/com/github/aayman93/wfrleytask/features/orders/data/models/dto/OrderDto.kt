@@ -13,7 +13,7 @@ data class OrderDto(
     val customerServiceUser: UserDto?,
     val customerUser: UserDto?,
     val deliveryUser: Any?,
-    val discountAmount: Int?,
+    val discountAmount: Double?,
     val fromPos: Boolean?,
     val grandTotal: Double?,
     val id: Int?,
@@ -35,7 +35,7 @@ data class OrderDto(
     val startShippingDate: Any?,
     val status: Int?,
     val syncSucceed: Boolean?,
-    val totalRefunded: Int?,
+    val totalRefunded: Double?,
     val updatedDate: String?
 ) {
     fun toOrder(): Order {

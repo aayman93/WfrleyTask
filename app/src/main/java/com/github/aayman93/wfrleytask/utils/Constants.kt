@@ -9,5 +9,7 @@ object Constants {
     const val STORE_ID = 5
     const val PAYMENT_DELIVERY_METHOD = 1
     const val DATE_TIME_FORMAT = "dd MMMM yyyy , h:mm"
-    const val DATE_FORMAT = "d MMMM yyyy"
+    const val DATE_FORMAT = "EEEE d MMMM yyyy"
+    const val TIME_FORMAT = "h:mm a"
+    const val TODAY_DATE_FORMAT = "d MMMM yyyy"
 }
