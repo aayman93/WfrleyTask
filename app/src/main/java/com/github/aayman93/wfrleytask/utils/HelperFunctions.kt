@@ -3,6 +3,7 @@ package com.github.aayman93.wfrleytask.utils
 import android.content.Context
 import android.widget.Toast
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
@@ -12,11 +13,16 @@ fun formatDateTime(
     locale: String = "ar"
 ): String {
     return try {
-        val date = LocalDateTime.parse(dateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+        val localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+
+        val sourceTimeZone = ZoneId.of("UTC")
+        val zonedDateTime = localDateTime.atZone(sourceTimeZone)
+
+        val deviceTimeZone = ZoneId.systemDefault()
+        val deviceDateTime = zonedDateTime.withZoneSameInstant(deviceTimeZone)
 
         val formatter = DateTimeFormatter.ofPattern(toPattern, Locale(locale))
-
-        date.format(formatter)
+        deviceDateTime.format(formatter)
     } catch (e: Exception) {
         e.printStackTrace()
         ""

@@ -1,9 +1,12 @@
 package com.github.aayman93.wfrleytask.features.orders.data.repository
 
 import com.github.aayman93.wfrleytask.features.orders.data.data_source.OrdersService
+import com.github.aayman93.wfrleytask.features.orders.data.models.requests.CreateOrderRequest
+import com.github.aayman93.wfrleytask.features.orders.data.models.requests.OrderDetailRequest
 import com.github.aayman93.wfrleytask.features.orders.data.models.requests.OrdersPagingRequest
 import com.github.aayman93.wfrleytask.features.orders.data.models.requests.SearchProductsRequest
 import com.github.aayman93.wfrleytask.features.orders.domain.models.Order
+import com.github.aayman93.wfrleytask.features.orders.domain.models.OrderDetail
 import com.github.aayman93.wfrleytask.features.orders.domain.models.OrderDetails
 import com.github.aayman93.wfrleytask.features.orders.domain.models.Product
 import com.github.aayman93.wfrleytask.features.orders.domain.repository.OrdersRepository
@@ -50,6 +53,31 @@ class OrdersRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun createOrder(
+        customerId: String,
+        customerServiceUserId: String,
+        storeId: Int,
+        paymentDeliveryMethod: Int,
+        postponedDate: String,
+        addressId: Int,
+        orderDeliveryMethod: Int,
+        orderDetails: List<OrderDetail>
+    ): Boolean {
+        return withContext(dispatcher) {
+            val request = createCreateOrderRequest(
+                customerId,
+                customerServiceUserId,
+                storeId,
+                paymentDeliveryMethod,
+                postponedDate,
+                addressId,
+                orderDeliveryMethod,
+                orderDetails
+            )
+            service.createOrder(request).id != null
+        }
+    }
+
     private fun createOrdersPagingRequest(
         pageNo: Int,
         pageSize: Int,
@@ -75,6 +103,36 @@ class OrdersRepositoryImpl @Inject constructor(
             name = name,
             storeId = storeId,
             merchantId = merchantId
+        )
+    }
+
+    private fun createCreateOrderRequest(
+        customerId: String,
+        customerServiceUserId: String,
+        storeId: Int,
+        paymentDeliveryMethod: Int,
+        postponedDate: String,
+        addressId: Int,
+        orderDeliveryMethod: Int,
+        orderDetails: List<OrderDetail>
+    ): CreateOrderRequest {
+        return CreateOrderRequest(
+            customerId = customerId,
+            customerServiceUserId = customerServiceUserId,
+            storeId = storeId,
+            paymentDeliveryMethod = paymentDeliveryMethod,
+            postponedDate = postponedDate,
+            addressId = addressId,
+            priceAfterDiscountTotal = orderDetails.sumOf { it.rowPriceAfterDiscount },
+            orderDeliveryMethod = orderDeliveryMethod,
+            orderDetails = orderDetails.map {
+                OrderDetailRequest(
+                    quantity = it.quantity,
+                    rowTotal = it.rowTotal,
+                    rowPriceAfterDiscount = it.rowPriceAfterDiscount,
+                    porductId = it.product.id
+                )
+            }
         )
     }
 }

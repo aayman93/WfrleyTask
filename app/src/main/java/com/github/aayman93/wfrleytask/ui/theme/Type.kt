@@ -103,6 +103,12 @@ val Text16Bold = TextStyle(
     fontSize = 16.sp
 )
 
+val Text20Regular = TextStyle(
+    fontFamily = AppFontFamily,
+    fontWeight = FontWeight.Normal,
+    fontSize = 20.sp
+)
+
 val Text20Medium = TextStyle(
     fontFamily = AppFontFamily,
     fontWeight = FontWeight.Medium,

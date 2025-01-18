@@ -2,12 +2,13 @@ package com.github.aayman93.wfrleytask.features.orders.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.requiredHeight
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -16,11 +17,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -38,13 +41,14 @@ fun OrdersTextField(
     onValueChange: (String) -> Unit,
     placeholder: String,
     modifier: Modifier = Modifier,
-    leadingIcon: @Composable (() -> Unit)? = null
+    leadingIcon: @Composable (() -> Unit)? = null,
+    keyboardType: KeyboardType = KeyboardType.Text
 ) {
     var isFocused by remember { mutableStateOf(false) }
 
     val density = LocalDensity.current
 
-    Column(
+    Box(
         modifier = modifier
             .height(56.dp)
             .clip(RoundedCornerShape(6.dp))
@@ -57,34 +61,36 @@ fun OrdersTextField(
                 },
                 shape = RoundedCornerShape(6.dp)
             )
-            .background(Color.White)
+            .background(Color.White),
+        contentAlignment = Alignment.Center
     ) {
         OutlinedTextField(
             value = value,
             onValueChange = onValueChange,
-            label = if (isFocused || value.isEmpty()) {
+            placeholder = if (value.isEmpty() && !isFocused) {
                 {
                     Text(
                         text = placeholder,
-                        style = if (isFocused) Text12Regular else Text16Regular,
-                        modifier = Modifier.applyIf(isFocused) {
-                            offset {
-                                return@offset IntOffset(
-                                    x = 0,
-                                    y = with(density) {
-                                        9.dp.roundToPx()
-                                    }
-                                )
-                            }
-                        }
+                        style = Text12Regular,
+                        color = Neutral500
                     )
                 }
             } else null,
             modifier = Modifier
+                .fillMaxWidth()
                 .onFocusChanged { focusState ->
                     isFocused = focusState.isFocused
                 }
-                .requiredHeight(56.dp),
+                .applyIf(isFocused) {
+                    offset {
+                        return@offset IntOffset(
+                            x = 0,
+                            y = with(density) {
+                                9.dp.roundToPx()
+                            }
+                        )
+                    }
+                },
             textStyle = Text16Regular,
             leadingIcon = leadingIcon,
             colors = OutlinedTextFieldDefaults.colors(
@@ -94,12 +100,20 @@ fun OrdersTextField(
                 unfocusedBorderColor = Color.Transparent,
                 focusedTextColor = Neutral700,
                 unfocusedTextColor = Neutral700,
-                focusedLabelColor = Neutral500,
-                unfocusedLabelColor = Neutral500,
                 cursorColor = Primary700
             ),
-            shape = RoundedCornerShape(6.dp)
+            shape = RoundedCornerShape(6.dp),
+            keyboardOptions = KeyboardOptions(keyboardType = keyboardType)
         )
+        if (isFocused) {
+            Text(
+                text = placeholder,
+                style = Text12Regular,
+                color = Neutral500,
+                modifier = Modifier.padding(top = 9.dp, start = 16.dp)
+                    .align(Alignment.TopStart)
+            )
+        }
     }
 }
 

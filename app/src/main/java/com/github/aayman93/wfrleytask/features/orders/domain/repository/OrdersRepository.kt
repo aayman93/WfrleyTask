@@ -1,6 +1,7 @@
 package com.github.aayman93.wfrleytask.features.orders.domain.repository
 
 import com.github.aayman93.wfrleytask.features.orders.domain.models.Order
+import com.github.aayman93.wfrleytask.features.orders.domain.models.OrderDetail
 import com.github.aayman93.wfrleytask.features.orders.domain.models.OrderDetails
 import com.github.aayman93.wfrleytask.features.orders.domain.models.Product
 
@@ -24,4 +25,15 @@ interface OrdersRepository {
         storeId: Int,
         merchantId: String
     ): List<Product>
+
+    suspend fun createOrder(
+        customerId: String,
+        customerServiceUserId: String,
+        storeId: Int,
+        paymentDeliveryMethod: Int,
+        postponedDate: String,
+        addressId: Int,
+        orderDeliveryMethod: Int,
+        orderDetails: List<OrderDetail>
+    ): Boolean
 }

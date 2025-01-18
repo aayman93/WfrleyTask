@@ -51,4 +51,8 @@ class NewOrderViewModel @Inject constructor() : ViewModel() {
         _state.update { it.copy(selectedProducts = updatedList) }
     }
 
+    fun onOrderFinished() {
+        _state.update { it.copy(selectedProducts = emptyList()) }
+    }
+
 }

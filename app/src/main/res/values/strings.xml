@@ -28,4 +28,6 @@
     <string name="create_new_order">انشاء طلب جديد</string>
     <string name="finish_order">إتمام الطلب</string>
     <string name="search_for_product">بحث بالإسم او الباركود</string>
+    <string name="paid_amount">المبلغ المدفوع</string>
+    <string name="order_created_successfully">تم إنشاء الطلب بنجاح</string>
 </resources>

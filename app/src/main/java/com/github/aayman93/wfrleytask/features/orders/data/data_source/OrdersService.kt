@@ -1,8 +1,10 @@
 package com.github.aayman93.wfrleytask.features.orders.data.data_source
 
 import com.github.aayman93.wfrleytask.features.orders.data.models.dto.ProductDto
+import com.github.aayman93.wfrleytask.features.orders.data.models.requests.CreateOrderRequest
 import com.github.aayman93.wfrleytask.features.orders.data.models.requests.OrdersPagingRequest
 import com.github.aayman93.wfrleytask.features.orders.data.models.requests.SearchProductsRequest
+import com.github.aayman93.wfrleytask.features.orders.data.models.responses.CreateOrderResponse
 import com.github.aayman93.wfrleytask.features.orders.data.models.responses.OrderDetailsResponse
 import com.github.aayman93.wfrleytask.features.orders.data.models.responses.OrdersResponse
 import com.github.aayman93.wfrleytask.utils.Constants.SUB_ROUTE
@@ -28,4 +30,9 @@ interface OrdersService {
     suspend fun searchProducts(
         @Body searchProductsRequest: SearchProductsRequest
     ): List<ProductDto>
+
+    @POST("$SUB_ROUTE/CreateOrder")
+    suspend fun createOrder(
+        @Body createOrderRequest: CreateOrderRequest
+    ): CreateOrderResponse
 }

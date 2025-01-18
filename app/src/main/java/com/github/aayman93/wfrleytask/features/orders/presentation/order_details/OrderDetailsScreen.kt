@@ -229,7 +229,7 @@ private fun OrderDetailsScreenPreview() {
                 shippingAddress = ShippingAddress(
                     cityName = "المنصورة",
                     street = "شارع الجيش",
-                    telephone = "+201234567890"
+                    telephone = "01234567890"
                 )
             )
         ),

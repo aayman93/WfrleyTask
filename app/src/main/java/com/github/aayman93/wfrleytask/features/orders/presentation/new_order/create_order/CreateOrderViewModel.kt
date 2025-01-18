@@ -32,10 +32,15 @@ class CreateOrderViewModel @Inject constructor(
 
     private val errorHandler = CoroutineExceptionHandler { _, throwable ->
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = false) }
+            _state.update { it.copy(isLoading = false, searchProducts = emptyList()) }
             throwable.printStackTrace()
             throwable.localizedMessage?.let {
-                _eventChannel.send(CreateOrderEvent.OnError("عذراً، لا يوجد منتجات بهذا الاسم"))
+                val message = if (it.startsWith("HTTP 400")) {
+                    "عذراً، لا يوجد منتجات بهذا الاسم"
+                } else {
+                    it
+                }
+                _eventChannel.send(CreateOrderEvent.OnError(message))
             }
         }
     }

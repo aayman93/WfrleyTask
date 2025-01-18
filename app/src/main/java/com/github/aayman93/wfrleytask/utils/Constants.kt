@@ -8,6 +8,9 @@ object Constants {
     const val CUSTOMER_SERVICE_USER_ID = "c01282e4-7a03-424c-bbaa-c6df9c50af59"
     const val STORE_ID = 5
     const val PAYMENT_DELIVERY_METHOD = 1
+    const val POSTPONED_DATE = "2024-09-23T13:13:46.063Z"
+    const val ADDRESS_ID = 227
+    const val ORDER_DELIVERY_METHOD = 1
     const val DATE_TIME_FORMAT = "dd MMMM yyyy , h:mm"
     const val DATE_FORMAT = "EEEE d MMMM yyyy"
     const val TIME_FORMAT = "h:mm a"

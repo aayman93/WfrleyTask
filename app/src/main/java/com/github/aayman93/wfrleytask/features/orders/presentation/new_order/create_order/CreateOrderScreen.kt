@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContent
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -53,7 +53,6 @@ fun CreateOrderScreen(
     onBackClick: () -> Unit,
     onHomeClick: () -> Unit
 ) {
-
     val viewModel = hiltViewModel<CreateOrderViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -105,14 +104,14 @@ private fun CreateOrderScreenContent(
                     .statusBarsPadding()
             )
         },
-        contentWindowInsets = WindowInsets.safeContent
+        contentWindowInsets = WindowInsets.safeDrawing
     ) { innerPadding ->
         Box(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
                 .background(Color.White)
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = 16.dp)
         ) {
             Column(
                 modifier = Modifier

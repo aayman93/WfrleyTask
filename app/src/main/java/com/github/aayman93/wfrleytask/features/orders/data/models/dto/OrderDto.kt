@@ -43,7 +43,7 @@ data class OrderDto(
             id = this.id ?: -1,
             customerName = this.customerUser?.displayName.orEmpty(),
             orderDate = this.createdDate.orEmpty(),
-            price = this.grandTotal ?: 0.0
+            price = this.priceAfterDiscountTotal ?: 0.0
         )
     }
 }
